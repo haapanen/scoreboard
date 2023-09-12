@@ -1,0 +1,21 @@
+version: "3.7"
+services:
+  api:
+    build:
+      context: ./packages/api
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./packages/api/src:/home/bun/app/src
+  
+  ui:
+    build:
+      context: packages/ui
+      dockerfile: Dockerfile.dev
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./packages/ui/src:/home/bun/app/src
+      - ./packages/ui/public:/home/bun/app/public
+      - ./packages/ui/index.html:/home/bun/app/index.html

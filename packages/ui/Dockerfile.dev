@@ -1,0 +1,14 @@
+FROM oven/bun:1.0.0
+WORKDIR /home/bun/app
+
+# Install dependencies
+COPY --chown=bun:bun package.json bun.lockb ./
+RUN ls -la . && bun install
+
+COPY --chown=bun:bun tsconfig.json ./tsconfig.json
+COPY --chown=bun:bun tsconfig.node.json ./tsconfig.node.json
+COPY --chown=bun:bun vite.config.ts ./vite.config.ts
+COPY --chown=bun:bun tailwind.config.js ./tailwind.config.js
+COPY --chown=bun:bun postcss.config.js ./postcss.config.js
+
+CMD ["bun", "dev", "--host"]

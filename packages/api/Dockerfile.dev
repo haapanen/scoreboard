@@ -1,0 +1,10 @@
+FROM oven/bun:1.0.0
+WORKDIR /home/bun/app
+
+# Install dependencies
+COPY --chown=bun:bun package.json bun.lockb ./
+RUN bun install
+
+COPY --chown=bun:bun tsconfig.json ./tsconfig.json
+
+CMD ["bun", "dev"]
